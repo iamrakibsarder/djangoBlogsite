@@ -1,0 +1,36 @@
+{% extends 'partial/base.html' %}
+{% load static %}
+    
+{% block content %}
+    
+
+		<div id="colorlib-main">
+			<section class="ftco-section ftco-no-pt ftco-no-pb">
+	    	<div class="container">
+	    		<div class="row d-flex">
+	    			<div class="col-xl-8 py-5 px-md-5">
+	    				<div class="row pt-md-4">
+							{% for blog in blog_post %}
+			    			<div class="col-md-12">
+								<div class="blog-entry ftco-animate d-md-flex">
+									<a href="{{blog.slug}}" class="img img-2" style="background-image: url({{blog.featured_img.url}});"></a>
+									<div class="text text-2 pl-md-4">
+						  <h3 class="mb-2"><a href="{{blog.slug}}">{{blog.title}}</a></h3>
+						  <div class="meta-wrap">
+											<p class="meta">
+								  <span><i class="icon-calendar mr-2"></i>{{blog.pub_date}}</span>
+								  
+								  {% for tag in post.tags.all  %}
+								  <span><a href="single.html"><i class="icon-folder-o mr-2">{{tag.name}}</i></a></span>
+								  {% endfor %}
+								  <span><i class="icon-comment2 mr-2"></i>5 Comment</span>
+							  </p>
+						  </div>
+						  <p class="mb-4">{{blog.content | truncatechars:150 |safe}}</p>
+						  <p><a href="{{blog.slug}}" class="btn-custom">Read More <span class="ion-ios-arrow-forward"></span></a></p>
+						</div>
+								</div>
+							</div>
+				{% endfor %}
+			    		</div><!-- END-->
+{% endblock content %}
